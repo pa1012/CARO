@@ -1,0 +1,5 @@
+﻿  Options.cpp
+d:\cs161\carogame\carogame\options.h(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+d:\cs161\carogame\carogame\options.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+d:\cs161\carogame\carogame\options.cpp(67): warning C4018: '<': signed/unsigned mismatch
+  carogame.vcxproj -> D:\cs161\carogame\Debug\carogame.exe
