@@ -1,5 +1,7 @@
 #include "PlayPvC.h"
+
 long long  defense[7], attack[7];
+
 long long attackVertical(int u, int v, int icon, int k,bool B[3][50][50] , int level,int n ) {
 
 	long long sum = 0;
@@ -327,6 +329,7 @@ ii findPosition(int icon, int n, int k,bool B[3][50][50], int level) {
 }
 
 void playLevel(int icon, int n, int k, int level,stack <iii> &S, stack <iii> &Save,bool B[3][50][50],iii D[2500],int &turn) {
+	cout << level << endl;
 	if (level == 1) {
 		attack[0] = 0;
 		attack[1] = 10;

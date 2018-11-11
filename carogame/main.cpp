@@ -18,6 +18,9 @@
 #include "PlayPvC.h"
 #include "SaveAndLoadGame.h"
 #include "WinAnimation.h"
+#include "Statistics.h"
+#include "intro.h"
+
 using namespace std;
 
 const int MAXN = 50;
@@ -148,7 +151,7 @@ int main()
 	sf::Sprite scoreBoard;
 	sf::Sprite saveButton;
 	sf::Sprite loadButton;*/
-	sf::Sprite logo, ppMode, pcMode;
+	sf::Sprite logo, ppMode, pcMode,back;
 
 	sf::RectangleShape box[50][50];
 	
@@ -209,9 +212,12 @@ int main()
 	loadTexture("empty.png", emptyText);
 	loadTexture("ppmode.png", ppModeText);
 	loadTexture("pcmode.png", pcModeText);
+	loadTexture("backtomenu.png", backText);
 	CaroPlay play = initPlay();
+	CaroPlay view = initPlay();
 	CaroSave save = initSave(font);
 	CaroLoad load = initLoad(font);
+	CaroStatistic stt = initStatistic();
 	//ppMode
 	int posXppMode = (WINDOWN_WIDTH - ppModeWidth) / 2;
 	ppMode.setTexture(ppModeText);
@@ -225,6 +231,8 @@ int main()
 	loadTexture("logoText.png", logoText);
 	initSpriteInCenter(logo, logoText);
 	
+	back.setTexture(backText);
+	back.setPosition(WINDOWN_WIDTH - back.getGlobalBounds().width, WINDOWN_HEIGHT - back.getGlobalBounds().height);
 	
 	while (playstate)
 	{
@@ -548,9 +556,9 @@ int main()
 					}
 					if (save.saveButton.sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
 						state = PLAY;
-						if (!pcstate) saveGame("PVP",sizeOfGame,xScore,oScore,playerIcon,play.player1.getString(),play.player2.getString(),save.name.getString(),turn,D);
+						if (!pcstate) saveGame("PVP",level,sizeOfGame,xScore,oScore,playerIcon,play.player1.getString(),play.player2.getString(),save.name.getString(),turn,D);
 						else {
-							saveGame("PVC", sizeOfGame, xScore, oScore, playerIcon, play.player.getString(), play.computer.getString(), save.name.getString(), turn, D);;
+							saveGame("PVC", level,sizeOfGame, xScore, oScore, playerIcon, play.player.getString(), play.computer.getString(), save.name.getString(), turn, D);;
 							pcstate = true;
 						}
 					}
@@ -598,18 +606,20 @@ int main()
 									chooseModeToLoad = false;
 									enterNameFile = true;
 									enterNameSucceed = false;
+									loadError = false;
 								}
 							}
 							else {
-								loadGamePVC(sizeOfGame,xScore,oScore,play.player,load.name.getString(),turn,playerIcon,B,loadError,D,box,bigXBoxText,bigOBoxText);
+								loadGamePVC(level,sizeOfGame,xScore,oScore,play.player,load.name.getString(),turn,playerIcon,B,loadError,D,box,bigXBoxText,bigOBoxText);
 								if (!loadError) {
 									initForGamePVC(sizeOfGame, winer, drawableInit, B, turn, S, Save, box, emptyText);
-									pcstate = true;
-									loadGamePVC(sizeOfGame, xScore, oScore, play.player, load.name.getString(), turn, playerIcon, B, loadError, D, box, bigXBoxText, bigOBoxText);
+									loadGamePVC(level,sizeOfGame, xScore, oScore, play.player, load.name.getString(), turn, playerIcon, B, loadError, D, box, bigXBoxText, bigOBoxText);
 									state = PLAY;
 									drawableInit = true;
-							}
-							else {
+									pcstate = true;
+									winer = 0;
+								}
+								else {
 									state = LOAD;
 									initLoadSprite(load, font);
 									enter = false;
@@ -617,6 +627,7 @@ int main()
 									chooseModeToLoad = false;
 									enterNameFile = true;
 									enterNameSucceed = false;
+									loadError = false;
 								}
 							}
 						}
@@ -627,6 +638,88 @@ int main()
 				}
 				if (!enterNameFile) {
 					enterNameSucceed = true;
+				}
+			}
+			else
+				if (state == STATISTIC) {
+					if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+						if (!chooseModeToLoad) {
+							if (ppMode.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+								loadPC = false;
+								chooseModeToLoad = true;
+								initStatisticSprite(stt, 0, GAMES, font, chooseNumberSucceed);
+							}
+							if (pcMode.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+								loadPC = true;
+								chooseModeToLoad = true;
+								initStatisticSprite(stt, 1, GAMES, font, chooseNumberSucceed);
+							}
+						}
+						if (back.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+							state = MENU;
+						}
+					}
+					if (chooseModeToLoad && event.type == sf::Event::TextEntered) {
+						int num = Number(event, stt.enterNumber);
+						//cout << num<<endl;
+						if (event.text.unicode == 13) {
+							if (num != 0 & num <= GAMES) {
+								if (loadPC) {
+									InitForViewPVC(num,pcstate,sizeOfGame,xScore,oScore,playerIcon,view.player,turn,box,D,B,bigXBoxText,bigOBoxText);
+									state = VIEW;
+									initPlaySprite(view, font, window, sizeOfGame, still);
+									drawableInit = true;
+								}
+								else {
+									InitForViewPVP(num,pcstate,sizeOfGame,xScore,oScore,playerIcon,view.player1,view.player2,turn,box,D,B1,B2,bigXBoxText,bigOBoxText);
+									cout << sizeOfGame << endl;
+									state = VIEW;
+									initPlaySprite(view, font, window, sizeOfGame, still);
+									drawableInit = true;
+								}
+							}
+							else {
+								if (loadPC) initStatisticSprite(stt, 1, GAMES, font, chooseNumberSucceed);
+									else  initStatisticSprite(stt, 0, GAMES, font, chooseNumberSucceed);
+								chooseNumberSucceed = false;
+							}
+						}
+					}
+				}
+			else 
+			if (state == VIEW) {
+				if (play.items[2].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+					if (playMusic) {
+						playMusic = false;
+						music.pause();
+					}
+					else {
+						playMusic = true;
+						music.play();
+					}
+				}
+
+				if (play.items[4].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+					state = MENU;
+					resume = true;
+					music.pause();
+					playMusic = false;
+				}
+				if (play.items[6].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+					state = SAVE;
+					initSaveSprite(save, font);
+					loadPC = false;
+					chooseModeToLoad = false;
+					enterNameFile = true;
+					enterNameSucceed = false;
+				}
+				if (play.backgroundButton.rect.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+					backgroundOn = !backgroundOn;
+				}
+			}
+			if (state == ABOUTUS) {
+				if (back.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+					state = MENU;
 				}
 			}
 		}
@@ -806,6 +899,60 @@ int main()
 				load.nameNoti.setPosition((screenWidth - load.nameNoti.getGlobalBounds().width) / 2, 275);
 			}
 		}
+		else
+		if (state == STATISTIC) {
+			if (chooseModeToLoad) {
+				stt.numberOfGame.setPosition((screenWidth - stt.numberOfGame.getGlobalBounds().width) / 2, 80);
+				stt.xWin.setPosition((screenWidth - stt.xWin.getGlobalBounds().width) / 2, 150);
+				stt.oWin.setPosition((screenWidth - stt.oWin.getGlobalBounds().width) / 2, 230);
+				stt.draw.setPosition((screenWidth - stt.draw.getGlobalBounds().width) / 2, 310);
+				stt.enterNumber.setPosition((screenWidth - stt.enterNumber.getGlobalBounds().width) / 2, 450);
+				back.setPosition((screenWidth - back.getGlobalBounds().width), screenHeight - back.getGlobalBounds().height);
+				stt.numberBox2.sprite.setPosition((screenWidth - stt.numberBox2.sprite.getLocalBounds().width) / 2, 450);
+			}
+		}
+		else
+		if (state == VIEW) {
+			stringstream text;
+			text << xScore << " : " << oScore;
+			view.score.setString(text.str());
+			view.score.setPosition(600 + (200 - view.score.getGlobalBounds().width) / 2, 468);
+			cout << sizeOfGame << endl;
+			boxSize = screenHeight / sizeOfGame;
+			board = sizeOfGame * boxSize;
+			view.infomation.rect.setSize(sf::Vector2f((screenWidth - board), screenHeight));
+			view.infomation.rect.setPosition(board, 0);
+			X = 0, Y = (screenHeight - board) / 2;
+			if (drawableInit) {
+				for (i = 1; i <= sizeOfGame; i++)
+				{
+					for (j = 1; j <= sizeOfGame; j++)
+					{
+						box[i][j].setSize(sf::Vector2f(boxSize, boxSize));
+						box[i][j].setPosition(X, Y);
+						X = X + boxSize;
+					}
+					Y = Y + boxSize;
+					X = 0;
+				}
+				drawableInit = false;
+			}
+			//PvC
+			if (pcstate) {
+				if (playerIcon == 1) {
+					view.player.setPosition(684, 50);
+					view.computer.setPosition(684, 140);
+				}
+				else {
+					view.player.setPosition(684, 140);
+					view.computer.setPosition(684, 50);
+				}
+			}
+		}
+		else 
+		if (state == ABOUTUS) {
+			back.setPosition(screenWidth - back.getGlobalBounds().width, screenHeight - back.getGlobalBounds().height);
+		}
 
 		// RENDERING
 		window.clear();
@@ -863,6 +1010,41 @@ int main()
 					window.draw(load.loadButton.sprite);
 				}
 			}
+			break;
+		case STATISTIC:
+			if (!chooseModeToLoad) {
+				window.draw(pcMode);
+				window.draw(ppMode);
+			}
+			else {
+				window.draw(stt.numberOfGame);
+				window.draw(stt.xWin);
+				window.draw(stt.oWin);
+				window.draw(stt.draw);
+				window.draw(stt.numberBox2.sprite);
+				//window.draw(loadButton);
+				window.draw(back);
+				window.draw(stt.enterNumber);
+				//window.draw(number);	
+			}
+			break;
+		case VIEW:
+			drawPlay(window, play, playMusic, backgroundOn, sizeOfGame, pcstate);
+			for (int i = 1; i <= sizeOfGame; i++)
+				for (int j = 1; j <= sizeOfGame; j++)
+					window.draw(box[i][j]);
+			if (winer > 0) {
+				if (clock.getElapsedTime().asSeconds() >= 1.0f) {
+					window.draw(view.items[8].sprite);
+					window.draw(view.items[9].sprite);
+					window.draw(view.items[10].sprite);
+					window.draw(view.winNotification);
+				}
+			}
+			break;
+		case ABOUTUS:
+			intro(window);
+			window.draw(back);
 			break;
 		}
 

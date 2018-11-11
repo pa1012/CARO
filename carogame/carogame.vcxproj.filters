@@ -48,6 +48,9 @@
     <ClCompile Include="Play.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="aboutus.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LoadData.h">
@@ -87,6 +90,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Play.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="intro.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

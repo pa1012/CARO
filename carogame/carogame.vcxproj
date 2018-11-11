@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="aboutus.cpp" />
     <ClCompile Include="Init.cpp" />
     <ClCompile Include="LoadData.cpp" />
     <ClCompile Include="main.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="Constant.h" />
     <ClInclude Include="DataStruct.h" />
     <ClInclude Include="Init.h" />
+    <ClInclude Include="intro.h" />
     <ClInclude Include="LoadData.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Options.h" />

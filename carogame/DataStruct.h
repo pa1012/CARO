@@ -58,3 +58,9 @@ struct CaroLoad {
 	sf::RectangleShape boxName1, boxName2;
 	caroSprite loadButton;
 };
+
+struct CaroStatistic
+{
+	sf::Text numberOfGame, xWin, oWin, draw, enterNumber;
+	caroSprite numberBox2;
+};

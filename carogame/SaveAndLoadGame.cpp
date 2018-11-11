@@ -74,7 +74,7 @@ void loadGamePVP(int &n, int &xScore, int &oScore, sf::Text &player1, sf::Text &
 	}
 }
 
-void loadGamePVC(int &n, int &xScore, int &oScore, sf::Text &player,const string &name, int &turn, int &playerIcon, bool B[3][50][50], bool &loadError, iii D[2500], sf::RectangleShape box[50][50], sf::Texture &bigXBoxText, sf::Texture &bigOBoxText) {
+void loadGamePVC(int &level,int &n, int &xScore, int &oScore, sf::Text &player,const string &name, int &turn, int &playerIcon, bool B[3][50][50], bool &loadError, iii D[2500], sf::RectangleShape box[50][50], sf::Texture &bigXBoxText, sf::Texture &bigOBoxText) {
 	stringstream str;
 	str << "Data/PVC/" << name << ".txt";
 	string fileName = str.str();
@@ -124,10 +124,11 @@ void loadGamePVC(int &n, int &xScore, int &oScore, sf::Text &player,const string
 			//S.push(make_pair(icon, make_pair(x, y)));
 			//cout << D[i].first << " " << D[i].second.first << " " << D[i].second.second << endl;
 		}
+		fileIn >> level;
 	}
 }
 
-void saveGame(string mode, int n, int xScore, int oScore, int playerIcon, string player1, string player2, string name, int turn, iii D[2500]) {
+void saveGame(string mode, int level, int n, int xScore, int oScore, int playerIcon, string player1, string player2, string name, int turn, iii D[2500]) {
 	stringstream str;
 	
 	str << "Data/" << mode << "/" << name << ".txt";
@@ -147,7 +148,7 @@ void saveGame(string mode, int n, int xScore, int oScore, int playerIcon, string
 	fileOut << turn << endl;
 	for (int i = 1; i <= turn; i++)
 		fileOut << D[i].first << " " << D[i].second.first << " " << D[i].second.second << endl;
-	fileOut << 0;
+	if (mode == "PVC") fileOut << level;
 }
 
 CaroSave initSave(const sf::Font &font) {
