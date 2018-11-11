@@ -86,7 +86,7 @@ void putReverse(int n, int u, int v, int icon, bool B[4][50][50], sf::RectangleS
 }
 
 // PVP
-void Cross(int n, int u, int v, int k, bool B1[50][50], bool B2[50][50], sf::RectangleShape box[50][50], sf::Texture blackXText, sf::Texture blackOText) {
+void Cross(int n, int u, int v, int k, bool B1[50][50], bool B2[50][50], sf::RectangleShape box[50][50], sf::Texture &blackXText, sf::Texture &blackOText) {
 	int count1 = 0, count2 = 0;
 	for (int i = 0; i < k && u + i <= n && v + i <= n; i++) {
 		if (!B1[u + i][v + i]) count1++;
@@ -124,7 +124,7 @@ void Cross(int n, int u, int v, int k, bool B1[50][50], bool B2[50][50], sf::Rec
 	}
 }
 
-void Reverse(int n, int u, int v, int k, bool B1[50][50], bool B2[50][50], sf::RectangleShape box[50][50], sf::Texture blackXText, sf::Texture blackOText) {
+void Reverse(int n, int u, int v, int k, bool B1[50][50], bool B2[50][50], sf::RectangleShape box[50][50], sf::Texture &blackXText, sf::Texture &blackOText) {
 	int count1 = 0, count2 = 0;
 	for (int i = 0; i < k && u - i > 0 && v + i <= n; i++) {
 		if (!B1[u - i][v + i]) count1++;
@@ -162,7 +162,7 @@ void Reverse(int n, int u, int v, int k, bool B1[50][50], bool B2[50][50], sf::R
 	}
 }
 
-void Vertical(int n, int u, int v, int k, bool B1[50][50], bool B2[50][50], sf::RectangleShape box[50][50], sf::Texture blackXText, sf::Texture blackOText) {
+void Vertical(int n, int u, int v, int k, bool B1[50][50], bool B2[50][50], sf::RectangleShape box[50][50], sf::Texture &blackXText, sf::Texture &blackOText) {
 
 	int count1 = 0, count2 = 0;
 
@@ -202,7 +202,7 @@ void Vertical(int n, int u, int v, int k, bool B1[50][50], bool B2[50][50], sf::
 	}
 }
 
-void Horizontal(int n, int u, int v, int k, bool B1[50][50], bool B2[50][50], sf::RectangleShape box[50][50], sf::Texture blackXText, sf::Texture blackOText) {
+void Horizontal(int n, int u, int v, int k, bool B1[50][50], bool B2[50][50], sf::RectangleShape box[50][50], sf::Texture &blackXText, sf::Texture &blackOText) {
 	int count1 = 0, count2 = 0;
 	for (int i = 0; i < k && v + i <= n; i++) {
 		if (!B1[u][v + i]) count1++;
@@ -240,7 +240,7 @@ void Horizontal(int n, int u, int v, int k, bool B1[50][50], bool B2[50][50], sf
 	}
 }
 
-void putAnimationWin(int n, int u, int v, int k, bool B1[50][50], bool B2[50][50], sf::RectangleShape box[50][50], sf::Texture blackXText, sf::Texture blackOText) {
+void putAnimationWin(int n, int u, int v, int k, bool B1[50][50], bool B2[50][50], sf::RectangleShape box[50][50],sf::Texture &blackXText, sf::Texture& blackOText) {
 	Cross(n, u, v, k, B1, B2, box, blackXText, blackOText);
 	Reverse(n, u, v, k, B1, B2, box, blackXText, blackOText);
 	Vertical(n, u, v, k, B1, B2, box, blackXText, blackOText);

@@ -27,8 +27,10 @@ typedef pair<int, ii> iii;
 enum GameState {
 	SPLASH, MENU, PLAY, END, CHOOSE_SIZE, CHOOSEMODE, STATISTIC, SAVE, WIN, LOAD, VIEW, ABOUTUS
 };
+
 int main()
 {
+
 #pragma region DECLARE VARIABLES
 	bool B1[MAXN][MAXN], B2[MAXN][MAXN], B[3][MAXN][MAXN];
 	bool playstate = true;
@@ -118,7 +120,7 @@ int main()
 	sf::RectangleShape gameBoard, information;
 	sf::RectangleShape boxName1, boxName2;
 	sf::RectangleShape backgroundButton;
-	vector < vector< sf::RectangleShape>> box;
+	sf::RectangleShape box[50][50];
 	
 
 	//Fonts
@@ -178,6 +180,7 @@ int main()
 	//logo
 	loadTexture("logoText.png", logoText);
 	initSpriteInCenter(logo, logoText);
+	
 	
 	while (playstate)
 	{
