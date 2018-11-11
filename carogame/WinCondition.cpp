@@ -196,7 +196,7 @@ bool checkReverse(int n, int k, int u, int v, int icon, bool B[4][50][50]) {
 	return false;
 }
 
-bool checkPC(int n, int k, int u, int v, int icon, bool B[4][50][50],sf::Texture blackXText, sf::Texture blackOText, sf::RectangleShape box[50][50]) {
+bool checkPC(int n, int k, int u, int v, int icon, bool B[4][50][50],sf::Texture &blackXText, sf::Texture &blackOText, sf::RectangleShape box[50][50]) {
 
 	if (checkVertical(n, k, u, v, icon,B)) {
 		putVertical(n,u, v, icon,B,box,blackXText,blackOText);
@@ -217,7 +217,7 @@ bool checkPC(int n, int k, int u, int v, int icon, bool B[4][50][50],sf::Texture
 	return false;
 }
 
-void checkWinPC(int n, int turn, int winer,iii D[2510],int &winX, int &winY, bool B[4][50][50], sf::Texture blackXText, sf::Texture blackOText, sf::RectangleShape box[50][50]) {
+void checkWinPC(int n, int turn, int &winer,iii D[2510],int &winX, int &winY, bool B[4][50][50], sf::Texture &blackXText, sf::Texture &blackOText, sf::RectangleShape box[50][50]) {
 
 	int tempN = (n <= 3) ? 3 : (n <=6 ) ? 4 : 5;
 
@@ -225,7 +225,7 @@ void checkWinPC(int n, int turn, int winer,iii D[2510],int &winX, int &winY, boo
 		int x = D[i].second.first;
 		int y = D[i].second.second;
 		int icon = D[i].first;
-		if (checkPC(n, 3, x, y, icon, B, blackXText, blackOText, box)) winer = icon;
+		if (checkPC(n, tempN, x, y, icon, B, blackXText, blackOText, box)) winer = icon;
 
 		if (winer > 0) {
 			winX = x;

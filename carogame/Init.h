@@ -9,5 +9,4 @@ void initRectangle(sf::RectangleShape &rectangle, sf::Color outlineColor,const s
 void initBoardGame(int size, sf::Color outlineColor, sf::Texture emptyTexture, sf::RectangleShape box[50][50]);
 void setStringForPlayer(sf::Text player, sf::Text player1, sf::Text player2);
 void initRectangle(sf::RectangleShape &rectangle, sf::Vector2f vector, sf::Color color, const sf::Window &window, int posY);
-
 void updateText(sf::Text &text,const sf::String &string);

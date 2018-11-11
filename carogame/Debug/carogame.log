@@ -1,4 +1,54 @@
-﻿  WinAnimation.cpp
+﻿  Init.cpp
+d:\cs161\carogame\carogame\init.cpp(7): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\init.cpp(9): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\cs161\carogame\carogame\init.cpp(14): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\init.cpp(15): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\init.cpp(16): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\cs161\carogame\carogame\init.cpp(25): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\init.cpp(27): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\cs161\carogame\carogame\init.cpp(61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\cs161\carogame\carogame\init.cpp(66): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\init.cpp(67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  LoadData.cpp
+d:\cs161\carogame\carogame\loaddata.cpp(18): warning C4806: '!=': unsafe operation: no value of type 'bool' promoted to type 'int' can equal the given constant
+d:\cs161\carogame\carogame\loaddata.cpp(23): warning C4806: '==': unsafe operation: no value of type 'bool' promoted to type 'int' can equal the given constant
+  Menu.cpp
+d:\cs161\carogame\carogame\menu.cpp(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+d:\cs161\carogame\carogame\menu.h(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+d:\cs161\carogame\carogame\menu.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+d:\cs161\carogame\carogame\menu.h(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Options.cpp
+d:\cs161\carogame\carogame\options.h(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+d:\cs161\carogame\carogame\options.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+d:\cs161\carogame\carogame\options.cpp(67): warning C4018: '<': signed/unsigned mismatch
+  Play.cpp
+d:\cs161\carogame\carogame\play.h(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+d:\cs161\carogame\carogame\play.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  PlayPvC.cpp
+  SaveAndLoadGame.cpp
+  Statistics.cpp
+d:\cs161\carogame\carogame\statistics.cpp(71): warning C4018: '<': signed/unsigned mismatch
+  WinAnimation.cpp
   WinCondition.cpp
   main.cpp
 d:\cs161\carogame\carogame\menu.h(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -8,97 +58,69 @@ d:\cs161\carogame\carogame\options.h(1): warning C4067: unexpected tokens follow
 d:\cs161\carogame\carogame\options.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 d:\cs161\carogame\carogame\play.h(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 d:\cs161\carogame\carogame\play.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-d:\cs161\carogame\carogame\main.cpp(208): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(218): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(222): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(253): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-d:\cs161\carogame\carogame\main.cpp(212): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(261): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-d:\cs161\carogame\carogame\main.cpp(218): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(271): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-d:\cs161\carogame\carogame\main.cpp(224): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(281): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-d:\cs161\carogame\carogame\main.cpp(230): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(291): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-d:\cs161\carogame\carogame\main.cpp(234): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(295): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-d:\cs161\carogame\carogame\main.cpp(239): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(304): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-d:\cs161\carogame\carogame\main.cpp(244): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(309): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-d:\cs161\carogame\carogame\main.cpp(252): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(317): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-d:\cs161\carogame\carogame\main.cpp(255): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(320): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-d:\cs161\carogame\carogame\main.cpp(260): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(325): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-d:\cs161\carogame\carogame\main.cpp(265): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(330): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-d:\cs161\carogame\carogame\main.cpp(296): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-d:\cs161\carogame\carogame\main.cpp(333): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-d:\cs161\carogame\carogame\main.cpp(365): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-d:\cs161\carogame\carogame\main.cpp(376): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-d:\cs161\carogame\carogame\main.cpp(383): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-d:\cs161\carogame\carogame\main.cpp(390): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-d:\cs161\carogame\carogame\main.cpp(397): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(377): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
@@ -108,22 +130,12 @@ d:\cs161\carogame\carogame\main.cpp(415): warning C4244: 'argument': conversion 
           [
               T=float
           ]
-d:\cs161\carogame\carogame\main.cpp(419): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(447): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-d:\cs161\carogame\carogame\main.cpp(423): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-d:\cs161\carogame\carogame\main.cpp(427): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-d:\cs161\carogame\carogame\main.cpp(434): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(458): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
@@ -133,12 +145,81 @@ d:\cs161\carogame\carogame\main.cpp(465): warning C4244: 'argument': conversion 
           [
               T=float
           ]
-d:\cs161\carogame\carogame\main.cpp(466): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\cs161\carogame\carogame\main.cpp(473): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(478): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-d:\cs161\carogame\carogame\main.cpp(474): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\cs161\carogame\carogame\main.cpp(493): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\main.cpp(511): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\main.cpp(515): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\main.cpp(519): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\main.cpp(523): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\main.cpp(531): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\main.cpp(545): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\main.cpp(549): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\main.cpp(569): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\main.cpp(573): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\main.cpp(579): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\main.cpp(583): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\main.cpp(652): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\main.cpp(661): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\cs161\carogame\carogame\main.cpp(662): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Generating Code...
   carogame.vcxproj -> D:\cs161\carogame\Debug\carogame.exe

@@ -3,7 +3,7 @@
 using namespace std;
 
 // PVC
-void putVertical(int n,int u, int v, int  icon , bool B[4][50][50],sf::RectangleShape box[50][50],sf::Texture blackXText, sf::Texture blackOText) {
+void putVertical(int n,int u, int v, int  icon , bool B[4][50][50],sf::RectangleShape box[50][50],sf::Texture &blackXText, sf::Texture &blackOText) {
 	for (int i = 0; i <= 6 && u + i <= n; i++)
 	{
 		if (B[icon][u + i][v]) break;
@@ -22,7 +22,7 @@ void putVertical(int n,int u, int v, int  icon , bool B[4][50][50],sf::Rectangle
 	}
 }
 
-void putHorizontal(int n,int u, int v, int icon, bool B[4][50][50], sf::RectangleShape box[50][50], sf::Texture blackXText, sf::Texture blackOText) {
+void putHorizontal(int n,int u, int v, int icon, bool B[4][50][50], sf::RectangleShape box[50][50], sf::Texture &blackXText, sf::Texture &blackOText) {
 
 	for (int i = 0; i <= 6 && v + i <= n; i++)
 	{
@@ -43,7 +43,7 @@ void putHorizontal(int n,int u, int v, int icon, bool B[4][50][50], sf::Rectangl
 
 }
 
-void putCross(int n, int u, int v, int icon, bool B[4][50][50], sf::RectangleShape box[50][50], sf::Texture blackXText, sf::Texture blackOText) {
+void putCross(int n, int u, int v, int icon, bool B[4][50][50], sf::RectangleShape box[50][50], sf::Texture &blackXText, sf::Texture &blackOText) {
 
 	for (int i = 0; i <= 6 && u + i <= n && v + i <= n; i++)
 	{
@@ -64,7 +64,7 @@ void putCross(int n, int u, int v, int icon, bool B[4][50][50], sf::RectangleSha
 
 }
 
-void putReverse(int n, int u, int v, int icon, bool B[4][50][50], sf::RectangleShape box[50][50], sf::Texture blackXText, sf::Texture blackOText) {
+void putReverse(int n, int u, int v, int icon, bool B[4][50][50], sf::RectangleShape box[50][50], sf::Texture &blackXText, sf::Texture &blackOText) {
 
 	for (int i = 0; i <= 6 && u - i > 0 && v + i <= n; i++)
 	{

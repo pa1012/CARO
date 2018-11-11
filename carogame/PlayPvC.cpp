@@ -387,7 +387,7 @@ void playLevel(int icon, int n, int k, int level,stack <iii> &S, stack <iii> &Sa
 	D[turn] = make_pair(3 - icon, make_pair(pos.first, pos.second));
 }
 
-void doIt(bool &undostate, int icon,stack <iii> S, stack <iii> Save , sf::RectangleShape box[50][50],bool B[3][50][50],int turn, int winer, sf::Text winNoti,sf::Text player,sf::Texture bigXBoxText, sf::Texture bigOBoxText,sf::Texture emptyText) {
+void doIt(bool &undostate, int icon,stack <iii> &S, stack <iii> &Save , sf::RectangleShape box[50][50],bool B[3][50][50],int &turn, int &winer, sf::Text &winNoti,sf::Text &player,sf::Texture &bigXBoxText, sf::Texture &bigOBoxText,sf::Texture &emptyText) {
 
 	if (!S.empty()) {
 		int u = S.top().second.first;

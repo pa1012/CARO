@@ -21,7 +21,7 @@ CaroPlay initPlay(){
 	return play;
 }
 
-void initPlaySprite(CaroPlay &play, sf::Font &font , const sf::RenderWindow &window,const int& sizeOfGame) {
+void initPlaySprite(CaroPlay &play, sf::Font &font , const sf::RenderWindow &window,const int& sizeOfGame,bool still) {
 	for (int i = 0; i < PLAY_ITEMS_COUNT; i++) {
 		initSprite(play.items[i]);
 	}
@@ -30,10 +30,12 @@ void initPlaySprite(CaroPlay &play, sf::Font &font , const sf::RenderWindow &win
 	if (sizeOfGame <= 3) initText(play.rule, font, WHITE, "3 in a line to win.", 615, 550, 21, false);
 	else if (sizeOfGame <= 6) initText(play.rule, font, WHITE, "4 in a line to win.", 615, 550, 21, false);
 	else initText(play.rule, font, WHITE, "5 in a line to win.", 615, 550, 21, false);
-	initText(play.player1, font, WHITE, "Player 1", 684, 50, 20, false);
-	initText(play.player2, font, WHITE, "Player 2", 684, 140, 20, false);
-	initText(play.player, font, WHITE, "Player", 684, 50, 20, false);
-	initText(play.computer, font, WHITE, "Computer", 684, 140, 20, false);
+	if (!still) {
+		initText(play.player1, font, WHITE, "Player 1", 684, 50, 20, false);
+		initText(play.player2, font, WHITE, "Player 2", 684, 140, 20, false);
+		initText(play.player, font, WHITE, "Player", 684, 50, 20, false);
+		initText(play.computer, font, WHITE, "Computer", 684, 140, 20, false);
+	}
 	initText(play.score, font, WHITE, "0 : 0", 0, 140, 30, true);
 	initText(play.winNotification, font, WHITE, "", 0, 232, 35, true);
 	initRectangle(play.infomation.rect, BLACK, play.infomation.texture);

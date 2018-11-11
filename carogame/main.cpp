@@ -28,6 +28,52 @@ enum GameState {
 	SPLASH, MENU, PLAY, END, CHOOSE_SIZE, CHOOSEMODE, STATISTIC, SAVE, WIN, LOAD, VIEW, ABOUTUS
 };
 
+void initForGamePVP(const int & sizeOfGame,int & winer,bool & drawableInit,bool B1[50][50],bool B2[50][50],int & turn,stack <iii> &S, stack <iii> &Save,sf::RectangleShape box[MAXN][MAXN],sf::Texture &emptyText) {
+	turn = 0;
+	drawableInit = true;
+	winer = 0;
+	while (!S.empty())
+	{
+		S.pop();
+	}
+	while (!Save.empty())
+	{
+		Save.pop();
+	}
+	for (int i = 0; i < MAXN; i++)
+		for (int j = 0; j < MAXN; j++) {
+			box[i][j].setTexture(&emptyText);
+			box[i][j].setOutlineColor(sf::Color::Black);
+			box[i][j].setOutlineThickness(1.0f);
+			B1[i][j] = true;
+			B2[i][j] = true;
+		}
+}
+
+void initForGamePVC(const int & sizeOfGame, int & winer, bool & drawableInit, bool B[3][50][50], int & turn, stack <iii> &S, stack <iii> &Save, sf::RectangleShape box[MAXN][MAXN], sf::Texture &emptyText) {
+	turn = 0;
+	drawableInit = true;
+	winer = 0;
+	while (!S.empty())
+	{
+		S.pop();
+	}
+	while (!Save.empty())
+	{
+		Save.pop();
+	}
+	for (int i = 0; i < MAXN; i++)
+		for (int j = 0; j < MAXN; j++) {
+			box[i][j].setTexture(&emptyText);
+			box[i][j].setOutlineColor(sf::Color::Black);
+			box[i][j].setOutlineThickness(1.0f);
+		}
+	for (int k = 0; k < 3; k++) {
+		for (int i = 0; i < MAXN; i++)
+			for (int j = 0; j < MAXN; j++) B[k][i][j] = true;
+	}
+}
+
 int main()
 {
 
@@ -48,7 +94,7 @@ int main()
 	int winer = 0;
 	int gameNameWidth = 248, gameNameHeight = 67;
 	int ppModeWidth = 245;
-	bool playMusic;
+	bool playMusic = false;
 	bool resume = false;
 	int playerIcon = 0;
 	bool chooseIconSucceed = false;
@@ -88,23 +134,12 @@ int main()
 	sf::Texture saveButtonText;
 	sf::Texture loadButtonText;
 	sf::Texture background;
-	sf::Texture textures[] = { logoText, gameNameText, ppModeText, pcModeText, pc1Text, pc2Text, pc3Text, resumeGameText, statisticsText, chooseSizeText, numberBoxText, numberBox2Text, chooseIconText, xBoxText, oBoxText, startText, soundOnText, soundOffText, undoText, backText, bigXBoxText, bigOBoxText, emptyText, winText, continueplayText, exitBoxText, smallXText, smallOText, blackXText, blackOText, saveText, loadText, aboutUsText, scoreText, saveButtonText, loadButtonText, background };
+	
 
-	string textureFiles[] = { "logoText.png",
-								"gameNameText.png", "ppModeText.png", "pcModeText.png", "pc1Text.png", "pc2Text.png", "pc3Text.png", "resumeGameText.png", "statisticText.png",
-								"chooseSizeText.png", "numberBoxText.png", "numberBoxText2.png", "chooseIconText.png", "xBoxText.png", "oBoxText.png", "startText.png",
-								"soundOnText.png", "soundOffText.png", "undoText.png", "backText.png", "bigXBoxText.png", "bigOBoxText.png", "emptyText.png",
-								"winText.png", "continueplayText.png", "exitText.png",
-								"smallXText.png", "smallOText.png",
-								"blackXText.png", "blackOText.png",
-								"saveText.png", "loadText.png", "aboutUsText.png",
-								"scoreText.png",
-								"saveButtonText.png",
-								"loadButtonText.png",
-								"background.png" };
+	
 	//Sprites
 
-	sf::Sprite gameName, ppMode, pcMode, pc1, pc2, pc3, resumeGame, statistics;
+	/*sf::Sprite gameName, ppMode, pcMode, pc1, pc2, pc3, resumeGame, statistics;
 	sf::Sprite chooseSize, numberBox, numberBox2, chooseIcon, xBox, oBox, start;
 	sf::Sprite sound, undo, back;
 	sf::Sprite win, continuePlay;
@@ -112,14 +147,9 @@ int main()
 	sf::Sprite save, load, aboutUs;
 	sf::Sprite scoreBoard;
 	sf::Sprite saveButton;
-	sf::Sprite loadButton;
-	sf::Sprite logo;
+	sf::Sprite loadButton;*/
+	sf::Sprite logo, ppMode, pcMode;
 
-	//Shape
-
-	sf::RectangleShape gameBoard, information;
-	sf::RectangleShape boxName1, boxName2;
-	sf::RectangleShape backgroundButton;
 	sf::RectangleShape box[50][50];
 	
 
@@ -128,7 +158,7 @@ int main()
 	sf::Font font;
 
 	//Text
-	sf::Text player1, player2, rule1, rule2, rule3;
+	/*sf::Text player1, player2, rule1, rule2, rule3;
 	sf::String playInput;
 	sf::Text playText, notification;
 	sf::Text winNoti;
@@ -136,7 +166,7 @@ int main()
 	sf::Text score;
 	sf::Text asking, name, nameNoti;
 	sf::Text pvc, numberOfGame, xWin, oWin, draw, enterNumber;
-	sf::Text rule[9];
+	sf::Text rule[9];*/
 
 	//Sound
 	sf::SoundBuffer soundBuffer;
@@ -176,7 +206,21 @@ int main()
 	loadTexture("bigobox.png", bigOBoxText);
 	loadTexture("blackxbox.png", blackXText);
 	loadTexture("blackobox.png", blackOText);
+	loadTexture("empty.png", emptyText);
+	loadTexture("ppmode.png", ppModeText);
+	loadTexture("pcmode.png", pcModeText);
 	CaroPlay play = initPlay();
+	CaroSave save = initSave(font);
+	CaroLoad load = initLoad(font);
+	//ppMode
+	int posXppMode = (WINDOWN_WIDTH - ppModeWidth) / 2;
+	ppMode.setTexture(ppModeText);
+	ppMode.setPosition(posXppMode, 135);
+
+	//pcMode
+	pcMode.setTexture(pcModeText);
+	pcMode.setPosition(posXppMode, 263);
+
 	//logo
 	loadTexture("logoText.png", logoText);
 	initSpriteInCenter(logo, logoText);
@@ -191,6 +235,7 @@ int main()
 		else if (state == SPLASH) {
 			state = MENU;
 			initMenuSprite(menu);
+
 		}
 	
 		//EVENT
@@ -208,24 +253,40 @@ int main()
 				if (menu.items[1].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
 					state = CHOOSE_SIZE;
 					initOptionSprite(option,font);
+					chooseIconSucceed = false;
+					chooseSizeSucceed = false;
+					sizeOfGame = 0;
+					enter = false;
 				}
 				if (menu.items[5].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
 					state = CHOOSE_SIZE;
 					pcstate = true;
 					level = 1;
 					initOptionSprite(option,font);
+					chooseIconSucceed = false;
+					chooseSizeSucceed = false;
+					sizeOfGame = 0;
+					enter = false;
 				}
 				if (menu.items[6].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
 					state = CHOOSE_SIZE;
 					pcstate = true;
 					level = 2;
 					initOptionSprite(option,font);
+					chooseIconSucceed = false;
+					chooseSizeSucceed = false;
+					sizeOfGame = 0;
+					enter = false;
 				}
 				if (menu.items[7].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
 					state = CHOOSE_SIZE;
 					pcstate = true;
 					level = 3;
 					initOptionSprite(option,font);
+					chooseIconSucceed = false;
+					chooseSizeSucceed = false;
+					sizeOfGame = 0;
+					enter = false;
 				}
 				if (resume && menu.items[3].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
 					state = PLAY;
@@ -233,8 +294,12 @@ int main()
 				}
 				if (menu.items[9].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
 					state = LOAD;
+					initLoadSprite(load,font);
 					enter = false;
+					loadPC = false;
+					chooseModeToLoad = false;
 					enterNameFile = true;
+					enterNameSucceed = false;
 				}
 				if (menu.items[4].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
 					state = STATISTIC;
@@ -259,14 +324,30 @@ int main()
 					}
 					if (chooseSizeSucceed && option.items[5].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
 						playerIcon = 2;
-						option.items[5].sprite.setTexture(smallXText);
+						option.items[5].sprite.setTexture(smallOText);
 						chooseIconSucceed = true;
 					}
 					if (option.items[6].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
 					{
 						state = PLAY;
 						drawableInit = true;
-						initPlaySprite(play,font,window,sizeOfGame);
+						initPlaySprite(play,font,window,sizeOfGame,false);
+						if (pcstate)
+						initForGamePVC(sizeOfGame, winer, drawableInit, B, turn, S, Save, box, emptyText);
+						else initForGamePVP(sizeOfGame, winer, drawableInit, B1,B2, turn, S, Save, box, emptyText);
+						turn = 0;
+						playerTurn = true;
+						enter = false, enteragain = false, chooseSizeSucceed = false;
+						winer = 0;
+						player1Turn = true; player2Turn = false;
+						undostate = false;
+						u = 0; v = 0;
+						boxSize = 0; board = 0;
+						playMusic = false;
+						resume = false;
+						chooseIconSucceed = false;
+						winX = 0; winY = 0;
+						xScore = 0; oScore = 0;
 					}
 				}
 
@@ -313,7 +394,8 @@ int main()
 									Save.push(make_pair(playerIcon, make_pair(u, v)));
 									turn++;
 									D[turn] = make_pair(playerIcon, make_pair(u, v));
-									if (winer == 0) checkWinPC(sizeOfGame,turn,winer,D,winX,winY,B,blackXText,blackOText,box);
+									if (winer == 0) 
+										checkWinPC(sizeOfGame,turn,winer,D,winX,winY,B,blackXText,blackOText,box);
 									if (winer > 0) {
 										clock.restart();
 										if (winer == 1) xScore++; else oScore++;
@@ -330,7 +412,7 @@ int main()
 							}
 						}
 
-					if (play.items[6].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+					if (play.items[5].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
 						undostate = true;
 					}
 
@@ -362,7 +444,7 @@ int main()
 						}
 					}
 
-					if (play.items[3].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+					if (play.items[2].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
 						if (playMusic) {
 							playMusic = false;
 							music.pause();
@@ -382,16 +464,30 @@ int main()
 
 					if (clock.getElapsedTime().asSeconds() >= 1.0f && pcstate && winer > 0 && play.items[9].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
 						still = true;
-						initPlaySprite(play,font,window,sizeOfGame);
+						initPlaySprite(play,font,window,sizeOfGame,still);
 						pcstate = true;
-
+						initForGamePVC(sizeOfGame, winer, drawableInit, B, turn,S,Save,box,emptyText);
+						turn = 0;
+						winer = 0;
+						playerTurn = true;
+						undostate = false;
+						playMusic = false;
+						resume = false;
 					}
 
 					if (clock.getElapsedTime().asSeconds() >= 1.0f && !pcstate && winer > 0 && play.items[9].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
 						still = true;
-						initPlaySprite(play,font,window,sizeOfGame);
+						initPlaySprite(play,font,window,sizeOfGame,still);
 						pcstate = false;
 						playerIcon = 0;
+						player1Turn = true;
+						initForGamePVP(sizeOfGame,winer,drawableInit,B1,B2,turn,S,Save,box,emptyText);
+						turn = 0;
+						winer = 0;
+						player1Turn = true; 
+						undostate = false;
+						playMusic = false;
+						resume = false;
 					}
 					else
 						if (clock.getElapsedTime().asSeconds() >= 1.0f && winer > 0 && play.items[10].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
@@ -421,15 +517,16 @@ int main()
 						enterTextPlayer2 = true;
 					}
 					if (pcstate && play.player.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
-						play,player.setString("| ");
+						play.player.setString("| ");
 						enterTextPlayer = true;
 					}
 					if (play.items[6].sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
 						state = SAVE;
-						//InitForSaveAndLoad();
-						loadPC = pcstate;
-						enter = false;
+						initSaveSprite(save,font);
+						loadPC = false;
+						chooseModeToLoad = false;
 						enterNameFile = true;
+						enterNameSucceed = false;
 					}
 					if (play.backgroundButton.rect.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
 						backgroundOn = !backgroundOn;
@@ -442,7 +539,96 @@ int main()
 					if (enterTextPlayer)  enterTextPlayer = enterName(play.player, event);
 				}
 			}
-
+			else 
+			if (state == SAVE) {
+				if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+					if (save.boxName1.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+						enter = true;
+						enterNameFile = true;
+					}
+					if (save.saveButton.sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+						state = PLAY;
+						if (!pcstate) saveGame("PVP",sizeOfGame,xScore,oScore,playerIcon,play.player1.getString(),play.player2.getString(),save.name.getString(),turn,D);
+						else {
+							saveGame("PVC", sizeOfGame, xScore, oScore, playerIcon, play.player.getString(), play.computer.getString(), save.name.getString(), turn, D);;
+							pcstate = true;
+						}
+					}
+				}
+				if (enterNameFile && event.type == sf::Event::TextEntered) {
+					enterNameFile = enterName(save.name, event);
+				}
+				if (!enterNameFile) {
+					enterNameSucceed = true;
+				}
+			}
+			else 
+			if (state == LOAD) {
+				if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+					if (!chooseModeToLoad) {
+						if (ppMode.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+							loadPC = false;
+							chooseModeToLoad = true;
+						}
+						if (pcMode.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+							loadPC = true;
+							chooseModeToLoad = true;
+						}
+					}
+					else {
+						if (load.boxName1.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+							enter = true;
+							enterNameFile = true;
+						}
+						if (load.loadButton.sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+							state = PLAY;
+							if (!loadPC) {
+								loadGamePVP(sizeOfGame,xScore,oScore,play.player1,play.player2,load.name.getString(),turn,B1,B2,loadError,D,box,bigXBoxText,bigOBoxText);
+								if (!loadError) {
+									initForGamePVP(sizeOfGame, winer, drawableInit, B1, B2, turn, S, Save, box, emptyText);
+									loadGamePVP(sizeOfGame, xScore, oScore, play.player1, play.player2, load.name.getString(), turn, B1, B2, loadError, D, box, bigXBoxText, bigOBoxText);
+									state = PLAY;
+									drawableInit = true;
+								}
+								else {
+									state = LOAD;
+									initLoadSprite(load, font);
+									enter = false;
+									loadPC = false;
+									chooseModeToLoad = false;
+									enterNameFile = true;
+									enterNameSucceed = false;
+								}
+							}
+							else {
+								loadGamePVC(sizeOfGame,xScore,oScore,play.player,load.name.getString(),turn,playerIcon,B,loadError,D,box,bigXBoxText,bigOBoxText);
+								if (!loadError) {
+									initForGamePVC(sizeOfGame, winer, drawableInit, B, turn, S, Save, box, emptyText);
+									pcstate = true;
+									loadGamePVC(sizeOfGame, xScore, oScore, play.player, load.name.getString(), turn, playerIcon, B, loadError, D, box, bigXBoxText, bigOBoxText);
+									state = PLAY;
+									drawableInit = true;
+							}
+							else {
+									state = LOAD;
+									initLoadSprite(load, font);
+									enter = false;
+									loadPC = false;
+									chooseModeToLoad = false;
+									enterNameFile = true;
+									enterNameSucceed = false;
+								}
+							}
+						}
+					}
+				}
+				if (enterNameFile && event.type == sf::Event::TextEntered) {
+					enterNameFile = enterName(load.name, event);
+				}
+				if (!enterNameFile) {
+					enterNameSucceed = true;
+				}
+			}
 		}
 
 		//LOGIC
@@ -451,7 +637,7 @@ int main()
 			if (!resume) {
 				initMenuSprite(menu);
 				initOptionSprite(option, font);
-				initPlaySprite(play, font,window,sizeOfGame);
+				initPlaySprite(play, font,window,sizeOfGame,still);
 			}
 		}
 		else 
@@ -462,10 +648,11 @@ int main()
 			play.score.setPosition(600 + (200 - play.score.getGlobalBounds().width) / 2, 468);
 			boxSize = screenHeight / sizeOfGame;
 			board = sizeOfGame * boxSize;
-			play.infomation.rect.setSize(sf::Vector2f((screenWidth - board), screenHeight));
-			play.infomation.rect.setPosition(board, 0);
+			play.infomation.rect.setSize(sf::Vector2f((WINDOWN_WIDTH - board), screenHeight));
+			play.infomation.rect.setPosition(600, 0);
 			X = 0, Y = (screenHeight - board) / 2;
 			if (drawableInit) {
+				cout << turn << endl;
 				for (i = 1; i <= sizeOfGame; i++)
 				{
 					for (j = 1; j <= sizeOfGame; j++)
@@ -481,6 +668,44 @@ int main()
 					X = 0;
 				}
 				drawableInit = false;
+			}
+
+			//PvC
+			if (pcstate) {
+				if (playerIcon == 1) {
+					play.player.setPosition(684, 50);
+					play.computer.setPosition(684, 140);
+				}
+				else {
+					play.player.setPosition(684, 140);
+					play.computer.setPosition(684, 50);
+				}
+
+				
+				doIt(undostate, playerIcon, S, Save, box, B, turn, winer, play.winNotification, play.player, bigXBoxText, bigOBoxText, emptyText);
+				
+				//Time delay computer play 
+				if (turn % 2 == 0) {
+					int x = D[turn].second.first;
+					int y = D[turn].second.second;
+					if (clock.getElapsedTime().asSeconds() >= 0.5f) {
+						if (D[turn].first == 1) {
+							if (winer > 0 && winer != 3) box[x][y].setTexture(&blackXText);
+							else box[x][y].setTexture(&bigXBoxText);
+						}
+						else {
+							if (winer > 0 && winer != 3) box[x][y].setTexture(&blackOText);
+							else box[x][y].setTexture(&bigOBoxText);
+						}
+					}
+					else box[x][y].setTexture(&emptyText);
+				}
+				if (turn % 2 == 1 && winer > 0) {
+					if (D[turn].first == 1) {
+						box[D[turn].second.first][D[turn].second.second].setTexture(&blackXText);
+					}
+					else box[D[turn].second.first][D[turn].second.second].setTexture(&blackOText);
+				}
 			}
 
 			//PvP
@@ -556,6 +781,31 @@ int main()
 			if (winer > 0)
 				play.winNotification.setPosition((600 - play.winNotification.getGlobalBounds().width) / 2, 232);
 		}
+		else
+		if (state == SAVE) {
+			save.saveButton.sprite.setPosition((screenWidth - save.saveButton.sprite.getGlobalBounds().width) / 2, 550);
+			save.asking.setString("Enter a name to save: ");
+			save.asking.setPosition((WINDOWN_WIDTH - save.asking.getGlobalBounds().width) / 2, 114);
+			save.name.setPosition((WINDOWN_WIDTH - save.name.getGlobalBounds().width) / 2, 220);
+			if (enterNameSucceed) {
+				save.nameNoti.setString("Your file game is :" + save.name.getString() + ".txt");
+				save.nameNoti.setPosition((WINDOWN_WIDTH - save.nameNoti.getGlobalBounds().width) / 2, 275);
+			}
+		}
+		else
+		if (state == LOAD) {
+			if (loadError) {
+				load.nameNoti.setString("Not found. Enter again!");
+				load.nameNoti.setPosition((WINDOWN_WIDTH - load.nameNoti.getGlobalBounds().width) / 2, 275);
+			}
+			load.asking.setString("Enter a name to load: ");
+			load.asking.setPosition((screenWidth - load.asking.getGlobalBounds().width) / 2, 114);
+			load.name.setPosition((screenWidth - load.name.getGlobalBounds().width) / 2, 220);
+			if (enterNameSucceed && !loadError) {
+				load.nameNoti.setString("The game you want to play: " + load.name.getString());
+				load.nameNoti.setPosition((screenWidth - load.nameNoti.getGlobalBounds().width) / 2, 275);
+			}
+		}
 
 		// RENDERING
 		window.clear();
@@ -584,7 +834,38 @@ int main()
 				}
 			}
 			break;
+		case SAVE:
+			window.draw(save.asking);
+			if (!enter) window.draw(save.boxName1);
+			else {
+				window.draw(save.boxName2);
+				window.draw(save.name);
+			}
+			if (enterNameSucceed) {
+				window.draw(save.nameNoti);
+				window.draw(save.saveButton.sprite);
+			}
+			break;
+		case LOAD:
+			if (!chooseModeToLoad) {
+				window.draw(pcMode);
+				window.draw(ppMode);
+			}
+			else {
+				window.draw(load.asking);
+				if (!enter) window.draw(load.boxName1);
+				else {
+					window.draw(load.boxName2);
+					window.draw(load.name);
+				}
+				if (enterNameSucceed) {
+					window.draw(load.nameNoti);
+					window.draw(load.loadButton.sprite);
+				}
+			}
+			break;
 		}
+
 		window.display();
 	}
 	return 0;

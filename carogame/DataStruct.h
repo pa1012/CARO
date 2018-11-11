@@ -42,3 +42,19 @@ struct CaroPlay
 	sf::Text winNotification;
 	//sf::RectangleShape box[50][50];
 };
+
+struct CaroSave {
+	sf::Text asking;
+	sf::Text name;
+	sf::Text nameNoti;
+	sf::RectangleShape boxName1, boxName2;
+	caroSprite saveButton;
+};
+
+struct CaroLoad {
+	sf::Text asking;
+	sf::Text name;
+	sf::Text nameNoti;
+	sf::RectangleShape boxName1, boxName2;
+	caroSprite loadButton;
+};
