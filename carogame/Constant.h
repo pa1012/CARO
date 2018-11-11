@@ -8,6 +8,8 @@ const int WINDOWN_HEIGHT = 600;
 const int MAX_BOARD_GAME_SIZE = 50;
 const int MENU_ITEMS_COUNT = 10;
 const int OPTION_ITEMS_COUNT = 7;
+const int PLAY_ITEMS_COUNT = 11;
+
 
 const string MENU_FILES[] = { 
 	"Menu/gameName.png", 
@@ -77,4 +79,30 @@ const int OPTION_POSY[] = {
 
 const bool OPTION_ALIGN_CENTER[] = {
 	true,true, true, true,false, false,true
+};
+
+const string PLAY_FILES[] = {
+	"xbox.png",
+	"obox.png",
+	"soundon.png",
+	"soundoff.png",
+	"backtomenu.png",
+	"undo.png",
+	"save.png",
+	"scoreboard.png",
+	"win.png",
+	"continueplay.png",
+	"exit.png"
+};
+
+const int PLAY_POSX[] = {
+	615,615,615,615,715,615,715,620,106,163,359
+};
+
+const int PLAY_POSY[] = {
+	42,122,210,210,210,300,300,396,182,317,317
+};
+
+const bool PLAY_ALIGN_CENTER[] = {
+	false,false,false,false,false,false,false,false,false,false,false
 };

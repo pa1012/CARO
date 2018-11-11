@@ -27,13 +27,13 @@ void initText(sf::Text &text, sf::Font &font, sf::Color color, sf::String input,
 	text.setPosition(posX, posY);
 }
 
-void initRectangle(sf::RectangleShape rectangle, sf::Color outlineColor, sf::Color fillColor) {
+void initRectangle(sf::RectangleShape &rectangle, sf::Color outlineColor, sf::Color fillColor) {
 	rectangle.setFillColor(fillColor);
 	rectangle.setOutlineThickness(1.0f);
 	rectangle.setOutlineColor(outlineColor);
 }
 
-void initRectangle(sf::RectangleShape rectangle, sf::Color outlineColor, sf::Texture texture) {
+void initRectangle(sf::RectangleShape &rectangle, sf::Color outlineColor,const sf::Texture &texture) {
 	rectangle.setOutlineColor(outlineColor);
 	rectangle.setOutlineThickness(1.0f);
 	rectangle.setTexture(&texture);
@@ -55,7 +55,7 @@ void setStringForPlayer(sf::Text player, sf::Text player1, sf::Text player2) {
 	player2.setString("Player 2");
 }
 
-void initRectangle(sf::RectangleShape rectangle, sf::Vector2f vector, sf::Color color,sf::Window &window, int posY) {
+void initRectangle(sf::RectangleShape &rectangle, sf::Vector2f vector, sf::Color color,const sf::Window &window, int posY) {
 	rectangle.setSize(vector);
 	rectangle.setFillColor(color);
 	rectangle.setPosition(window.getSize().x - rectangle.getGlobalBounds().width, posY);

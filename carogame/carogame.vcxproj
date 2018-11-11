@@ -128,6 +128,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Options.cpp" />
+    <ClCompile Include="Play.cpp" />
     <ClCompile Include="PlayPvC.cpp" />
     <ClCompile Include="SaveAndLoadGame.cpp" />
     <ClCompile Include="Statistics.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="LoadData.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Options.h" />
+    <ClInclude Include="Play.h" />
     <ClInclude Include="PlayPvC.h" />
     <ClInclude Include="SaveAndLoadGame.h" />
     <ClInclude Include="Statistics.h" />

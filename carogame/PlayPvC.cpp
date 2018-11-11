@@ -326,7 +326,7 @@ ii findPosition(int icon, int n, int k,bool B[3][50][50], int level) {
 	return res;
 }
 
-void playLevel(int icon, int n, int k, int level,stack <iii> S, stack <iii>Save,bool B[3][50][50],iii D[2500],int turn) {
+void playLevel(int icon, int n, int k, int level,stack <iii> &S, stack <iii> &Save,bool B[3][50][50],iii D[2500],int &turn) {
 	if (level == 1) {
 		attack[0] = 0;
 		attack[1] = 10;

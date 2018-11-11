@@ -21,7 +21,7 @@ void saveView(string mode, int n, int xScore, int oScore, int playerIcon, string
 	fileOut << 0;
 }
 
-void updatePVC(int winer , int n, int xScore, int oScore, int playerIcon, string player1, string player2, int number, int turn, iii D[2500]) {
+void updatePVC(int winer , int n, int xScore, int oScore, int playerIcon, string player1, string player2, int turn, iii D[2500]) {
 	ifstream fileIn("Data/Statistics/PVC/summary.txt");
 	int countGame, numberOfPlayerWin, numberOfComputerWin, numberOfDraw;
 	fileIn >> countGame;
@@ -41,7 +41,7 @@ void updatePVC(int winer , int n, int xScore, int oScore, int playerIcon, string
 	saveView("PVC",n,xScore,oScore,playerIcon,player1,player2,countGame,turn,D);
 }
 
-void updatePVP(int winer, int n, int xScore, int oScore, int playerIcon, string player1, string player2, int number, int turn, iii D[2500]) {
+void updatePVP(int winer, int n, int xScore, int oScore, int playerIcon, string player1, string player2, int turn, iii D[2500]) {
 	ifstream fileIn("Data/Statistics/PVP/summary.txt");
 	int countGame, numberOfWinX, numberOfWinO, numberOfDraw;
 	fileIn >> countGame;

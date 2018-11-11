@@ -4,6 +4,13 @@
 #include<SFML/Audio.hpp>
 #include <SFML/System.hpp>
 
+struct caroRect {
+	sf::RectangleShape rect;
+	sf::Texture texture;
+	string file;
+	int posX, posY;
+	sf::Vector2f vector;
+};
 struct caroSprite {
 	sf::Sprite sprite;
 	sf::Texture texture;
@@ -23,4 +30,15 @@ struct CaroOption
 	sf::Text notification;
 	sf::Text sizeOfGame;
 	sf::String playerInput;
+};
+
+struct CaroPlay
+{
+	caroRect infomation, backgroundButton;
+	vector<caroSprite> items;
+	sf::Text score;
+	sf::Text player1, player2, player, computer;
+	sf::Text rule;
+	sf::Text winNotification;
+	//sf::RectangleShape box[50][50];
 };

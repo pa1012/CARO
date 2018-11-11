@@ -45,6 +45,9 @@
     <ClCompile Include="Options.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="Play.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LoadData.h">
@@ -81,6 +84,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Options.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Play.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
