@@ -1,8 +1,8 @@
 #include "PlayPvC.h"
 
-long long  defense[7], attack[7];
 
-long long attackVertical(int u, int v, int icon, int k,bool B[3][50][50] , int level,int n ) {
+
+long long attackVertical(int u, int v, int icon, int k,bool B[3][50][50] , int level,int n, long long  defense[7], long long attack[7]) {
 
 	long long sum = 0;
 	int countCom = 0;
@@ -40,7 +40,7 @@ long long attackVertical(int u, int v, int icon, int k,bool B[3][50][50] , int l
 	return sum;
 }
 
-long long attackHorizontal(int u, int v, int icon, int k, bool B[3][50][50], int level, int n) {
+long long attackHorizontal(int u, int v, int icon, int k, bool B[3][50][50], int level, int n, long long  defense[7], long long attack[7]) {
 
 	long long sum = 0;
 	int countCom = 0;
@@ -77,7 +77,7 @@ long long attackHorizontal(int u, int v, int icon, int k, bool B[3][50][50], int
 	return sum;
 }
 
-long long attackCross(int u, int v, int icon, int k, bool B[3][50][50], int level, int n) {
+long long attackCross(int u, int v, int icon, int k, bool B[3][50][50], int level, int n, long long  defense[7], long long attack[7]) {
 
 	long long sum = 0;
 	int countCom = 0;
@@ -117,7 +117,7 @@ long long attackCross(int u, int v, int icon, int k, bool B[3][50][50], int leve
 
 }
 
-long long attackReverse(int u, int v, int icon, int k, bool B[3][50][50], int level, int n) {
+long long attackReverse(int u, int v, int icon, int k, bool B[3][50][50], int level, int n, long long  defense[7], long long attack[7]) {
 
 	long long sum = 0;
 	int countCom = 0;
@@ -156,7 +156,7 @@ long long attackReverse(int u, int v, int icon, int k, bool B[3][50][50], int le
 	return sum;
 }
 
-long long defenseVertical(int u, int v, int icon, int k, bool B[3][50][50], int level, int n) {
+long long defenseVertical(int u, int v, int icon, int k, bool B[3][50][50], int level, int n, long long  defense[7], long long attack[7]) {
 
 	long long sum = 0;
 	int countCom = 0;
@@ -192,7 +192,7 @@ long long defenseVertical(int u, int v, int icon, int k, bool B[3][50][50], int 
 	return sum;
 }
 
-long long defenseHorizontal(int u, int v, int icon, int k, bool B[3][50][50], int level, int n) {
+long long defenseHorizontal(int u, int v, int icon, int k, bool B[3][50][50], int level, int n, long long  defense[7], long long attack[7]) {
 
 	long long sum = 0;
 	int countCom = 0;
@@ -228,7 +228,7 @@ long long defenseHorizontal(int u, int v, int icon, int k, bool B[3][50][50], in
 	return sum;
 }
 
-long long defenseCross(int u, int v, int icon, int k, bool B[3][50][50], int level, int n) {
+long long defenseCross(int u, int v, int icon, int k, bool B[3][50][50], int level, int n, long long  defense[7], long long attack[7]) {
 
 	long long sum = 0;
 	int countCom = 0;
@@ -266,7 +266,7 @@ long long defenseCross(int u, int v, int icon, int k, bool B[3][50][50], int lev
 	return sum;
 }
 
-long long defenseReverse(int u, int v, int icon, int k, bool B[3][50][50], int level, int n) {
+long long defenseReverse(int u, int v, int icon, int k, bool B[3][50][50], int level, int n, long long  defense[7], long long attack[7]) {
 
 	long long sum = 0;
 	int countCom = 0;
@@ -303,15 +303,15 @@ long long defenseReverse(int u, int v, int icon, int k, bool B[3][50][50], int l
 	return sum;
 }
 
-ii findPosition(int icon, int n, int k,bool B[3][50][50], int level) {
+ii findPosition(int icon, int n, int k,bool B[3][50][50], int level, long long  defense[7], long long attack[7]) {
 	ii res = make_pair(0, 0);
 	long long Max = 0;
 	long long MaxSum = 0;
 	for (int i = 1; i <= n; i++)
 		for (int j = 1; j <= n; j++)
 			if (B[1][i][j] && B[2][i][j]) {
-				long long attackScore = attackVertical(i, j, icon, k,B,level,n) + attackHorizontal(i, j, icon, k,B,level,n) + attackCross(i, j, icon, k,B,level,n) + attackReverse(i, j, icon, k,B,level,n);
-				long long defenseScore = defenseVertical(i, j, icon, k,B,level,n) + defenseHorizontal(i, j, icon, k,B,level,n) + defenseCross(i, j, icon, k,B,level,n) + defenseReverse(i, j, icon, k,B,level,n);
+				long long attackScore = attackVertical(i, j, icon, k,B,level,n, defense, attack) + attackHorizontal(i, j, icon, k,B,level,n, defense, attack) + attackCross(i, j, icon, k,B,level,n, defense, attack) + attackReverse(i, j, icon, k,B,level,n, defense, attack);
+				long long defenseScore = defenseVertical(i, j, icon, k,B,level,n, defense, attack) + defenseHorizontal(i, j, icon, k,B,level,n, defense, attack) + defenseCross(i, j, icon, k,B,level,n, defense, attack) + defenseReverse(i, j, icon, k,B,level,n, defense, attack);
 				long long temporaryScore = attackScore > defenseScore ? attackScore : defenseScore;
 				long long sum = attackScore + defenseScore;
 				/*if (level == 3 && Max == temporaryScore) {
@@ -329,7 +329,9 @@ ii findPosition(int icon, int n, int k,bool B[3][50][50], int level) {
 }
 
 void playLevel(int icon, int n, int k, int level,stack <iii> &S, stack <iii> &Save,bool B[3][50][50],iii D[2500],int &turn) {
-	cout << level << endl;
+	//cout << level << endl;
+	long long  defense[7]; long long attack[7];
+	
 	if (level == 1) {
 		attack[0] = 0;
 		attack[1] = 10;
@@ -381,7 +383,7 @@ void playLevel(int icon, int n, int k, int level,stack <iii> &S, stack <iii> &Sa
 		defense[5] = 6561;
 		defense[6] = 59049;
 	}
-	ii pos = findPosition(icon, n, k,B,level);
+	ii pos = findPosition(icon, n, k,B,level,defense,attack);
 	//cout << pos.first << " " << pos.second << endl;
 	S.push(make_pair(3 - icon, make_pair(pos.first, pos.second)));
 	Save.push(make_pair(3 - icon, make_pair(pos.first, pos.second)));

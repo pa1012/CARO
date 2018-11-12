@@ -44,9 +44,12 @@ d:\cs161\carogame\carogame\options.cpp(67): warning C4018: '<': signed/unsigned 
   Play.cpp
 d:\cs161\carogame\carogame\play.h(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 d:\cs161\carogame\carogame\play.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  PlayPvC.cpp
   SaveAndLoadGame.cpp
   Statistics.cpp
 d:\cs161\carogame\carogame\statistics.cpp(73): warning C4018: '<': signed/unsigned mismatch
+  WinAnimation.cpp
+  WinCondition.cpp
   main.cpp
 d:\cs161\carogame\carogame\menu.h(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 d:\cs161\carogame\carogame\menu.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
